@@ -1,0 +1,15 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/gavin/Desktop/coding/output/A1125525-2'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003BCC, symSize: 0xC8 }
+  - { offsetInCU: 0x4443, offset: 0x4443, size: 0x8, addend: 0x0, symName: __ZNSt3__14endlB7v160006IcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_, symObjAddr: 0x140, symBinAddr: 0x100003D0C, symSize: 0x58 }
+  - { offsetInCU: 0x4483, offset: 0x4483, size: 0x8, addend: 0x0, symName: __ZNSt3__19use_facetB7v160006INS_5ctypeIcEEEERKT_RKNS_6localeE, symObjAddr: 0x274, symBinAddr: 0x100003E40, symSize: 0x2C }
+  - { offsetInCU: 0x6CF2, offset: 0x6CF2, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003BCC, symSize: 0xC8 }
+  - { offsetInCU: 0x6DEC, offset: 0x6DEC, size: 0x8, addend: 0x0, symName: __ZNKSt3__19basic_iosIcNS_11char_traitsIcEEEcvPvB7v160006Ev, symObjAddr: 0xC8, symBinAddr: 0x100003C94, symSize: 0x4C }
+  - { offsetInCU: 0x6E10, offset: 0x6E10, size: 0x8, addend: 0x0, symName: __ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsB7v160006EPFRS3_S4_E, symObjAddr: 0x114, symBinAddr: 0x100003CE0, symSize: 0x2C }
+  - { offsetInCU: 0x6E42, offset: 0x6E42, size: 0x8, addend: 0x0, symName: __ZNKSt3__19basic_iosIcNS_11char_traitsIcEEE4failB7v160006Ev, symObjAddr: 0x198, symBinAddr: 0x100003D64, symSize: 0x28 }
+  - { offsetInCU: 0x6E66, offset: 0x6E66, size: 0x8, addend: 0x0, symName: __ZNKSt3__18ios_base4failB7v160006Ev, symObjAddr: 0x1C0, symBinAddr: 0x100003D8C, symSize: 0x28 }
+  - { offsetInCU: 0x6E8C, offset: 0x6E8C, size: 0x8, addend: 0x0, symName: __ZNKSt3__19basic_iosIcNS_11char_traitsIcEEE5widenB7v160006Ec, symObjAddr: 0x1E8, symBinAddr: 0x100003DB4, symSize: 0x8C }
+  - { offsetInCU: 0x6EF8, offset: 0x6EF8, size: 0x8, addend: 0x0, symName: __ZNKSt3__15ctypeIcE5widenB7v160006Ec, symObjAddr: 0x2A0, symBinAddr: 0x100003E6C, symSize: 0x38 }
+...
