@@ -1,1 +1,1 @@
-12chmod +x auto_commit.sh
+12chmod +x auto_co
