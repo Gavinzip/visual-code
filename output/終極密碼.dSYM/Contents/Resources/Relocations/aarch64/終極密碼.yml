@@ -1,6 +1,6 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     "/Users/gavin/Desktop/coding/output/終極密碼"
+binary-path:     "/Users/gavin/Desktop/coding/visual-code/output/終極密碼"
 relocations:
   - { offsetInCU: 0x49CF, offset: 0x49CF, size: 0x8, addend: 0x0, symName: __ZNSt3__19__shuffleB7v160006INS_17_ClassicAlgPolicyENS_11__wrap_iterIPiEES4_RNS_23mersenne_twister_engineIjLm32ELm624ELm397ELm31ELj2567483615ELm11ELj4294967295ELm7ELj2636928640ELm15ELj4022730752ELm18ELj1812433253EEEEET0_S8_T1_OT2_, symObjAddr: 0x2D98, symBinAddr: 0x1000059C4, symSize: 0x148 }
   - { offsetInCU: 0x5085, offset: 0x5085, size: 0x8, addend: 0x0, symName: __ZNSt3__124__put_character_sequenceB7v160006IcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_PKS4_m, symObjAddr: 0x41B4, symBinAddr: 0x100006DE0, symSize: 0x1F4 }
