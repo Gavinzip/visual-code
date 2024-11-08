@@ -1,1 +1,1 @@
-1234
+12chmod +x auto_commit.sh
