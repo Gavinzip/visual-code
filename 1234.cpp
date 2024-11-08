@@ -1,1 +1,1 @@
-12chmod +x auto_co
+12chmod +x a
