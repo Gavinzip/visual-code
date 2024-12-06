@@ -1,115 +1,56 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <signal.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-#define MAX_LINE 1024
+int main() {
+    int serverSocket, clientSocket;
+    struct sockaddr_in serverAddr, clientAddr;
+    socklen_t addrLen = sizeof(clientAddr);
 
-// 建立 TCP 伺服器並返回 socket 描述符
-int tcp_open_server(char *port) {
-    int sockfd;
-    struct sockaddr_in serv_addr;
-
-    // 創建 TCP Socket
-    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+    // 創建伺服器套接字
+    serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (serverSocket == -1) {
         perror("Socket creation failed");
-        return -1;
+        return 1;
     }
 
-    // 初始化地址結構
-    bzero((char *)&serv_addr, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = htonl(INADDR_ANY); // 綁定到所有本地地址
-    serv_addr.sin_port = htons(atoi(port));       // 指定埠號
+    // 設置伺服器地址和埠
+    memset(&serverAddr, 0, sizeof(serverAddr));
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = INADDR_ANY;
+    serverAddr.sin_port = htons(8081);
 
-    // 綁定地址
-    if (bind(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
+    // 綁定地址到套接字
+    if (bind(serverSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) == -1) {
         perror("Bind failed");
-        close(sockfd);
-        return -1;
+        close(serverSocket);
+        return 1;
     }
 
-    // 開始監聽
-    if (listen(sockfd, 5) < 0) {
+    // 監聽客戶端
+    if (listen(serverSocket, 5) == -1) {
         perror("Listen failed");
-        close(sockfd);
-        return -1;
+        close(serverSocket);
+        return 1;
     }
+    printf("Server is listening on port 8081...\n");
 
-    printf("Server listening on port %s...\n", port);
-    return sockfd;
-}
-
-// 處理客戶端請求
-void do_main(int newsockfd) {
-    int ret;
-    char buf[MAX_LINE];
-
-    while ((ret = read(newsockfd, buf, MAX_LINE)) > 0) {
-        buf[ret] = '\0'; // 確保字符串結尾
-        printf("Received: %s\n", buf);
-
-        if (strncmp(buf, "QUIT", 4) == 0) {
-            printf("Client requested to quit.\n");
-            break;
-        } else if (strncmp(buf, "GET", 3) == 0) {
-            char *response =
-                "HTTP/1.0 200 OK\r\n"
-                "Content-Type: text/plain\r\n"
-                "\r\nHello, World!\n";
-            send(newsockfd, response, strlen(response), 0);
-        } else {
-            char *error_msg = "Unknown command\n";
-            send(newsockfd, error_msg, strlen(error_msg), 0);
-        }
+    // 接受客戶端連接
+    clientSocket = accept(serverSocket, (struct sockaddr *)&clientAddr, &addrLen);
+    if (clientSocket == -1) {
+        perror("Accept failed");
+        close(serverSocket);
+        return 1;
     }
+    printf("Client connected!\n");
 
-    printf("Closing connection...\n");
-    close(newsockfd);
-}
+    // 關閉套接字
+    close(clientSocket);
+    close(serverSocket);
 
-int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("Usage: %s <port>\n", argv[0]);
-        exit(1);
-    }
-
-    int sockfd, newsockfd;
-    socklen_t clilen;
-    struct sockaddr_in cli_addr;
-
-    // 初始化 TCP 伺服器
-    sockfd = tcp_open_server(argv[1]);
-    if (sockfd < 0) {
-        exit(1);
-    }
-
-    for (;;) {
-        clilen = sizeof(cli_addr);
-
-        // 等待客戶端連接
-        newsockfd = accept(sockfd, (struct sockaddr *)&cli_addr, &clilen);
-        if (newsockfd < 0) {
-            perror("Accept failed");
-            continue;
-        }
-
-        printf("Connection established with %s:%d\n",
-               inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
-
-        // 創建子進程處理連接
-        if (fork() == 0) {
-            close(sockfd);          // 子進程不需要監聽 socket
-            do_main(newsockfd);     // 處理請求
-            exit(0);                // 結束子進程
-        }
-        close(newsockfd);           // 父進程關閉子進程使用的 socket
-    }
-
-    close(sockfd);
     return 0;
 }

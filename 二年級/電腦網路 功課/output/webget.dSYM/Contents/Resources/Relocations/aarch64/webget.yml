@@ -1,0 +1,13 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     "/Users/gavin/Desktop/coding/visual-code/二年級/電腦網路 功課/output/webget"
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _my_inet_addr, symObjAddr: 0x0, symBinAddr: 0x1000036CC, symSize: 0x84 }
+  - { offsetInCU: 0xAB, offset: 0xAB, size: 0x8, addend: 0x0, symName: _my_inet_addr, symObjAddr: 0x0, symBinAddr: 0x1000036CC, symSize: 0x84 }
+  - { offsetInCU: 0xEF, offset: 0xEF, size: 0x8, addend: 0x0, symName: _tcp_open_client, symObjAddr: 0x84, symBinAddr: 0x100003750, symSize: 0xF0 }
+  - { offsetInCU: 0x141, offset: 0x141, size: 0x8, addend: 0x0, symName: __OSSwapInt16, symObjAddr: 0x174, symBinAddr: 0x100003840, symSize: 0x24 }
+  - { offsetInCU: 0x1D6, offset: 0x1D6, size: 0x8, addend: 0x0, symName: _readready, symObjAddr: 0x198, symBinAddr: 0x100003864, symSize: 0x160 }
+  - { offsetInCU: 0x272, offset: 0x272, size: 0x8, addend: 0x0, symName: _readline, symObjAddr: 0x2F8, symBinAddr: 0x1000039C4, symSize: 0x110 }
+  - { offsetInCU: 0x2E0, offset: 0x2E0, size: 0x8, addend: 0x0, symName: _parse_url, symObjAddr: 0x408, symBinAddr: 0x100003AD4, symSize: 0x130 }
+  - { offsetInCU: 0x34E, offset: 0x34E, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x538, symBinAddr: 0x100003C04, symSize: 0x1FC }
+...
