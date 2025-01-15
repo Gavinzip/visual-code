@@ -8,16 +8,6 @@ CommissionEmployee::CommissionEmployee(
 {
     setGrossSales(sales);
     setCommissionRate(rate);
-
-    cout << "CommissionEmployee constructor: " << endl;
-    print();
-    cout << "\n\n";
-}
-
-CommissionEmployee::~CommissionEmployee() {
-    cout << "CommissionEmployee destructor: " << endl;
-    print();
-    cout << "\n\n";
 }
 
 void CommissionEmployee::setFirstName(const string& first) {
